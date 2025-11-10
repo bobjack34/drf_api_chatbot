@@ -20,13 +20,17 @@
 
 
 
-# wichtige Links
+## wichtige Links
 
+- [Django Projekt](https://www.djangoproject.com/)
+- [Drittanbieter Module](https://www.djangoproject.com/community/ecosystem/)
 - [uv docs](https://docs.astral.sh/uv/)
 - [Field Lookup Reference](https://docs.djangoproject.com/en/5.2/ref/models/querysets/#field-lookups)
 - [Django Tutorial](https://djangoheroes.friendlybytes.net)
+- [Mermaid Live](https://mermaid.live/)
+- [Mermaid Projekt](https://mermaid.js.org/)
 
 
-# VSCode Extensions
+## VSCode Extensions
 - Python Extension von Microsoft
 - Black Formatter von Microsoft
