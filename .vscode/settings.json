@@ -1,0 +1,5 @@
+{
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": false,
+    "files.autoSave": "onFocusChange"
+}

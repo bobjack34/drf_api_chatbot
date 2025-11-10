@@ -1,0 +1,24 @@
+# Textdateien: normalisieren (LF auf allen Systemen)
+*.py text eol=lf
+*.txt text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.csv text eol=lf
+*.ini text eol=lf
+
+# Binärdateien: nicht konvertieren
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.zip binary
+*.tar binary
+*.gz binary
+*.pkl binary
+*.db binary
+
+# uv lockfile: bei Merge immer lokale Version behalten
+uv.lock merge=ours
