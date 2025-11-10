@@ -2,24 +2,29 @@
 
 ## Installationshinweise
 
-cd event_manager
-uv sync
+    git clone https://github.com/bobjack34/drf_api_chatbot.git
+    cd drf_api_chatbot
+    uv sync
+    cd app
+    uv run manage.py runserver
 
-## Pakete installieren
 
-uv add django
+## weitere Pakete installieren
+
+    uv add django
 
 ## uv Projekt erstellen
 
-uv init projektname --python 3.13.9
+    uv init projektname --python 3.13.9
 
 
 
 
 # wichtige Links
 
-- [Erstellen eines neuen Django-Projekts mit uv](https://docs.djangoproject.com/en/5.2/ref/models/querysets/#field-lookups)
-- [Anlegen einer ersten App](https://djangoheroes.friendlybytes.net)
+- [uv docs](https://docs.astral.sh/uv/)
+- [Field Lookup Reference](https://docs.djangoproject.com/en/5.2/ref/models/querysets/#field-lookups)
+- [Django Tutorial](https://djangoheroes.friendlybytes.net)
 
 
 # VSCode Extensions
