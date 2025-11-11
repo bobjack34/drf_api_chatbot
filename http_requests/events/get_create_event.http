@@ -1,0 +1,15 @@
+### POST Event anlegen (category-list-create)
+POST http://127.0.0.1:8000/api/events/
+Content-Type: application/json
+
+{
+    "name": "Event API Test 1",
+    "sub_title": "Api Subtitle",
+    "date": "2025-04-20T10:00:00Z",
+    "min_group": 5,
+    "category": 2
+}
+
+
+### GET Events auflisten
+GET http://127.0.0.1:8000/api/events/

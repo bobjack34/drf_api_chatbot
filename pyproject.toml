@@ -7,7 +7,25 @@ requires-python = ">=3.13"
 dependencies = [
     "chromadb>=1.3.4",
     "django>=5.2.8",
+    "djangorestframework>=3.16.1",
     "langchain-chroma>=1.0.0",
     "langchain-text-splitters>=1.0.0",
     "openai>=2.7.1",
 ]
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "I", "B", "N", "S"]
+exclude = ["*/tests/*", "*/migrations/*", "build/"]
+
+[tool.ruff.isort]
+known-first-party = ["events", "users", "project"]
+force-sort-within-sections = true
+combine-as-imports = true
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.4",
+]
+
+

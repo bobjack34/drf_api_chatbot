@@ -29,8 +29,12 @@
 - [Django Tutorial](https://djangoheroes.friendlybytes.net)
 - [Mermaid Live](https://mermaid.live/)
 - [Mermaid Projekt](https://mermaid.js.org/)
+- [Django Styleguide](https://github.com/HackSoftware/Django-Styleguide)
+- [Django Restframework](https://www.django-rest-framework.org)
 
 
 ## VSCode Extensions
 - Python Extension von Microsoft
 - Black Formatter von Microsoft
+- Rest Client Api (donedb)
+- Ruff Extension Astral

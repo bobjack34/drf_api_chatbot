@@ -1,0 +1,22 @@
+### GET alle Kategorien auflisten (category-list-create)
+GET http://127.0.0.1:8000/api/events/category
+
+
+
+### POST Kategorie anlegen (category-list-create)
+POST http://127.0.0.1:8000/api/events/category
+Content-Type: application/json
+
+{
+    "name": "Api Kategorie 2",
+    "sub_title": "Api Subtitle",
+    "description": "Api Description"
+}
+
+
+### GET eine Kategorien aufrufen
+GET http://127.0.0.1:8000/api/events/category/3
+
+
+### GET eine nicht existente Kategorien aufrufen
+GET http://127.0.0.1:8000/api/events/category/34

@@ -1,0 +1,17 @@
+### POST an SimpleAPI mit gültigen Daten
+POST http://127.0.0.1:8000/api/events/simple
+Content-Type: application/json
+
+{
+    "value": 42
+}
+
+
+
+### POST an SimpleAPI mit ungültigen Daten
+POST http://127.0.0.1:8000/api/events/simple
+Content-Type: application/json
+
+{
+    "value": 42.5
+}

@@ -1,10 +1,8 @@
 import logging
 
-from django.shortcuts import render
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpRequest, HttpResponse
 
 from .models import Event
-
 
 logger = logging.getLogger(__name__)
 
