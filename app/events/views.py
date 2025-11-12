@@ -1,12 +1,14 @@
 import logging
 
 from django.http import HttpRequest, HttpResponse
+from django.contrib.auth.decorators import login_required
 
 from .models import Event
 
 logger = logging.getLogger(__name__)
 
 
+@login_required  # ist request.user ein gültiges Userobjekt
 def hello_world(request: HttpRequest) -> HttpResponse:
     """Eine erste View.
 

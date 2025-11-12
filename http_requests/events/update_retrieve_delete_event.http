@@ -1,0 +1,25 @@
+### Retrieve: Einen Event mit einer spezifischen ID holen
+GET http://127.0.0.1:8000/api/events/2
+
+### löschen
+DELETE http://127.0.0.1:8000/api/events/4
+
+### komplettes Update
+PUT http://127.0.0.1:8000/api/events/5
+Content-Type: application/json
+
+{
+    "name": "PUT Event API Test 1",
+    "sub_title": "PUT Api Subtitle",
+    "date": "2029-04-20T10:00:00Z",
+    "min_group": 10,
+    "category": 1
+}
+
+### partial Update
+PATCH http://127.0.0.1:8000/api/events/5
+Content-Type: application/json
+
+{
+    "name": "PATCH Event API Test 1"
+}

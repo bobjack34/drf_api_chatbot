@@ -1,0 +1,5 @@
+# rename to .env
+
+DEBUG=True
+SECRET_KEY=secret_key_austauschen
+ALLOWED_HOSTS=localhost,127.0.0.1,example.com

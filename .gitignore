@@ -8,5 +8,11 @@ wheels/
 
 .vscode/
 
+# staticfiles (durch manage.py colllectsatic generiert)
+staticfiles/
+
+# Umgebungsvariablen
+.env
+
 # Virtual environments
 .venv

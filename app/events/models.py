@@ -1,7 +1,10 @@
 from django.contrib.auth import get_user_model
+from django.core.validators import MinLengthValidator
 from django.db import models
 
 from project.mixins import DateMixin
+
+from .validators import datetime_in_future
 
 User = get_user_model()  # best practice um User-Model zu importieren
 
@@ -45,12 +48,21 @@ class Event(DateMixin):
         LARGE = 20, "sehr große Gruppe"
         UNLIMITED = 0, "kein Limit"
 
-    name = models.CharField(max_length=120)
+    name = models.CharField(
+        max_length=120,
+        validators=[
+            MinLengthValidator(3),
+        ],
+    )
     sub_title = models.CharField(max_length=100, null=True, blank=True)
     description = models.TextField(
         null=True, blank=True, help_text="Beschreibung der Kategorie"
     )
-    date = models.DateTimeField()
+    date = models.DateTimeField(
+        validators=[
+            datetime_in_future,
+        ]
+    )
     is_active = models.BooleanField(default=True)
     min_group = models.IntegerField(choices=Group.choices)  # 5, 10 oder 20
     category = models.ForeignKey(

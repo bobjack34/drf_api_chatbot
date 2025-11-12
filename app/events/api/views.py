@@ -3,10 +3,13 @@ import logging
 
 from django.contrib.auth import get_user_model
 from rest_framework import generics, serializers, status
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from events.models import Category, Event
+from project.authentications import ProxyHeaderAuthentication
 
 from .serializers import (
     CategorySerializer,
@@ -28,7 +31,18 @@ class EventListCreateAPIView(generics.ListCreateAPIView):
     und beim Ausgang den EventOutputSerializer
     """
 
-    queryset = Event.objects.all()
+    authentication_classes = [
+        TokenAuthentication,
+        ProxyHeaderAuthentication,
+    ]  # Wie wird authentifiziert?
+    permission_classes = [IsAuthenticated]  # Autorisierung
+
+    # siehe readme für mehr Infos!
+    # für Foreign-Key-Beziehungen (zb. Events->Category):
+    queryset = Event.objects.select_related("category", "author")
+
+    # für Rerverse-Foreign-Key (zb. Category->events):
+    # queryset = Event.objects.prefetch_related("category", "author")
 
     def get_serializer_class(self) -> serializers.Serializer:
         if self.request.method == "POST":
@@ -45,9 +59,9 @@ class EventListCreateAPIView(generics.ListCreateAPIView):
         input_serializer = input_serializer_class(data=request.data)
         input_serializer.is_valid(raise_exception=True)
 
-        # Behelfslösung, da wir noch keinen Token und keine Auth haben
-        quick_and_dirty_user = get_user_model().objects.first()
-        event = input_serializer.save(author=quick_and_dirty_user)
+        # Wenn User authentifziert ist, ist in request.user ein gültiges User-Objekt
+        # Wir haben uns via Token authentifiziert
+        event = input_serializer.save(author=request.user)
 
         output_serializer = EventOutputSerializer(event)
         return Response(
@@ -56,10 +70,52 @@ class EventListCreateAPIView(generics.ListCreateAPIView):
         )
 
 
+class EventRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    """Eine View für die Aktionen: PUT, PATCH, GET, DELETE.
+
+    PUT api/events/3
+    """
+
+    queryset = Event.objects.all()
+
+    def get_serializer_class(self) -> serializers.Serializer:
+        if self.request.method in ("PUT", "PATCH"):
+            return EventInputSerializer
+        else:
+            return EventOutputSerializer
+
+    def update(self, request, *args, **kwargs):
+        """PUT: alles updated, PATCH: eine Untergmenge updaten."""
+        partial = kwargs.pop("partial", False)  # put oder patch?
+        instance = self.get_object()
+
+        # Bestehendes Objekt serialisieren
+        input_serializer_class = self.get_serializer_class()
+        input_serializer = input_serializer_class(
+            instance,
+            data=request.data,
+            partial=partial,
+        )
+        # Eingehende Daten validieren und speichern
+        input_serializer.is_valid(raise_exception=True)
+        event = input_serializer.save()
+
+        # Event serialisieren und zurückgeben
+        output_serializer = EventOutputSerializer(event)
+        return Response(
+            output_serializer.data,
+            status=status.HTTP_200_OK,
+        )
+
+
 class CategoryListCreateApiView(APIView):
     """
     GET api/events/category
     """
+
+    # keine Auth und keine Permissions
+    authentication_classes = []
+    permission_classes = []
 
     def get(self, request):
         categories = Category.objects.all()

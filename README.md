@@ -31,6 +31,7 @@
 - [Mermaid Projekt](https://mermaid.js.org/)
 - [Django Styleguide](https://github.com/HackSoftware/Django-Styleguide)
 - [Django Restframework](https://www.django-rest-framework.org)
+- [Prefetch Related](https://djangoheroes.friendlybytes.net/working_with_forms/create_event_views.html#prefetch-related)
 
 
 ## VSCode Extensions

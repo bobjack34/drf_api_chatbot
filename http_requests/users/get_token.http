@@ -1,0 +1,9 @@
+### get token from djangorestframework.authtoken 
+### ee1764d4c1b32d8cf7cccfc1b14022e4ba429e72
+POST http://127.0.0.1:8000/api/users/token
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "abcd1234"
+}
