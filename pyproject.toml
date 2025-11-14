@@ -9,9 +9,12 @@ dependencies = [
     "django>=5.2.8",
     "django-environ>=0.12.0",
     "djangorestframework>=3.16.1",
+    "drf-spectacular[sidecar]>=0.29.0",
+    "fastapi>=0.121.2",
     "langchain-chroma>=1.0.0",
     "langchain-text-splitters>=1.0.0",
     "openai>=2.7.1",
+    "uvicorn>=0.38.0",
     "whitenoise>=6.11.0",
 ]
 
@@ -21,7 +24,7 @@ select = ["E", "F", "I", "B", "N", "S"]
 exclude = ["*/tests/*", "*/migrations/*", "build/"]
 
 [tool.ruff.isort]
-known-first-party = ["events", "users", "project"]
+known-first-party = ["events", "users", "project", "chat", "blob"]
 force-sort-within-sections = true
 combine-as-imports = true
 

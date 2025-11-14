@@ -20,8 +20,8 @@ GET http://127.0.0.1:8000/api/events/
 ### POST Event anlegen mit proxy header(category-list-create)
 POST http://127.0.0.1:8000/api/events/
 Content-Type: application/json
-X-Auth-Request-User: Alice
-X-Auth-Request-Email: alice@example.com
+X-Auth-Request-User: Peter
+X-Auth-Request-Email: peter@example.com
 
 {
     "name": "Event API Test 1",

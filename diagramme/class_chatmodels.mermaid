@@ -1,0 +1,32 @@
+classDiagram
+    class ChatbotContext {
+        CharField name
+        TextField system_prompt
+        BooleanField is_active
+        CharField collection_name
+    }
+
+    class ChatSession {
+        ForeignKey context
+        ForeignKey user
+        TextField initial_message
+        CharField model
+        CharField provider
+    }
+
+    class ChatMessage {
+        ForeignKey session
+        TextField prompt
+        TextField response_message
+        JSONField response_json
+        DateTimeField created_at
+    }
+
+    class User {
+        <<Django User>>
+    }
+
+    %% Beziehungen
+    ChatbotContext "1" <-- "many" ChatSession : uses
+    User "1" <-- "many" ChatSession : owns
+    ChatSession "1" <-- "many" ChatMessage : contains

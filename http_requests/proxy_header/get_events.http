@@ -3,3 +3,7 @@ GET http://127.0.0.1:8000/api/events
 X-Auth-Request-User: Alice
 X-Auth-Request-Email: alice@example.com
 
+### Prüfe Proxy Header Authentication
+GET http://127.0.0.1:8000/api/events
+X-Auth-Request-User: Bobby
+X-Auth-Request-Email: bobby@example.com

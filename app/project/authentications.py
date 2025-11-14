@@ -20,7 +20,7 @@ class ProxyHeaderAuthentication(BaseAuthentication):
         # sondern das ursprüngliche Django-Request-Objekt
         django_request = getattr(request, "_request", request)
 
-        # Wenn Middleware schon einen authentifizierten User set hat, direkt übernehmen
+        # Wenn Middleware schon einen authentifizierten User hat, direkt übernehmen
         user = getattr(django_request, "user", None)
         if user is not None and getattr(user, "is_authenticated", False):
             print("ProxyHeaderAuthentication: using user from middleware:", user)

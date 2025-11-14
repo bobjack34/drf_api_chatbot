@@ -1,0 +1,26 @@
+sequenceDiagram
+    participant User as Client (Browser/REST Client)
+    participant API as Django API (ChatMessageCreateView)
+    participant Flow as continue_chat()
+    participant RAG as Retriever (Vektor-DB, z.B. Chroma)
+    participant Bot as ChatBot (via bot_factory)
+    participant DB as Database (ChatMessage)
+
+    User->>API: POST /session/{id}/chat {"prompt": "..."}
+    API->>Flow: continue_chat(session, prompt)
+
+    Note over Flow,RAG: 1. Kontext anreichern (RAG)
+    Flow->>RAG: retrieve_context(prompt)
+    RAG-->>Flow: relevant docs / context passages
+
+    Note over Flow,Bot: 2. Prompt anreichern und Bot befragen
+    Flow->>Bot: bot_factory(session, messages+context) → bot
+    Flow->>Bot: send_prompt(bot, prompt+context)
+    Bot-->>Flow: (response_json, answer)
+
+    Note over Flow,DB: 3. Persistieren
+    Flow->>DB: save_message(session, prompt, response, answer)
+    DB-->>Flow: ChatMessage object
+
+    Flow-->>API: ChatMessage object
+    API-->>User: 201 Created + JSON (ChatMessageOutSerializer)

@@ -1,0 +1,10 @@
+### Crate new session for a given context
+POST http://127.0.0.1:8000/api/chat/start
+Content-Type: application/json
+Authorization: Token ee1764d4c1b32d8cf7cccfc1b14022e4ba429e72
+
+{
+"context_id": 1,
+"model":"gpt-4.1-mini",
+"initial_message": "Sub-Part der Initit message"
+}

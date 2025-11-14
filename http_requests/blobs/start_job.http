@@ -1,0 +1,20 @@
+### Sende einen Blob an einen DRF-View, die direkt verarbeitet
+POST http://127.0.0.1:8000/api/blobs/process
+Content-Type: application/json
+
+{
+  "name": "TestJob",
+  "meta": "png-blobby",
+  "payload": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+} 
+
+### Sende einen Blob an einen DRF-View (die dann weiterleitet auf einen entfernten Fastapi Service, ohne Blob zu speichern
+POST http://127.0.0.1:8000/api/blobs/process_remote
+Content-Type: application/json
+
+{
+  "name": "TestJob",
+  "meta": "png-blobby",
+  "payload": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+} 
+

@@ -32,8 +32,8 @@ class EventListCreateAPIView(generics.ListCreateAPIView):
     """
 
     authentication_classes = [
-        TokenAuthentication,
         ProxyHeaderAuthentication,
+        TokenAuthentication,
     ]  # Wie wird authentifiziert?
     permission_classes = [IsAuthenticated]  # Autorisierung
 
